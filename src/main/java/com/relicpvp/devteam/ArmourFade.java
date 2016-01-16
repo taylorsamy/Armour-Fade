@@ -18,7 +18,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class ArmourFade extends JavaPlugin implements Listener {
 
-	int r = 0;
+	int r = 255;
 	int g = 0;
 	int b = 0;
 	int time = 59;
@@ -40,199 +40,54 @@ public final class ArmourFade extends JavaPlugin implements Listener {
 
 			@Override
 			public void run() {
-				switch (time) {
-				case 59:
-					r = 255;
-					g = 0;
-					b = 0;
-					time -= 1;
-					break;
-				case 58:
-					r = 255;
-					g = 68;
-					b = 0;
-					time -= 1;
-					break;
-				case 57:
-					r = 255;
-					g = 111;
-					b = 0;
-					time -= 1;
-					break;
-				case 56:
-					r = 255;
-					g = 171;
-					b = 0;
-					time -= 1;
-					break;
-				case 55:
-					r = 255;
-					g = 255;
-					b = 0;
-					time -= 1;
-					break;
-				case 54:
-					r = 188;
-					g = 255;
-					b = 0;
-					time -= 1;
-					break;
-				case 53:
-					r = 128;
-					g = 255;
-					b = 0;
-					time -= 1;
-					break;
-				case 52:
-					r = 43;
-					g = 255;
-					b = 0;
-					time -= 1;
-					break;
-				case 51:
-					r = 0;
-					g = 255;
-					b = 9;
-					time -= 1;
-					break;
-				case 50:
-					r = 0;
-					g = 255;
-					b = 51;
-					time -= 1;
-					break;
-				case 49:
-					r = 0;
-					g = 255;
-					b = 111;
-					time -= 1;
-					break;
-				case 48:
-					r = 0;
-					g = 255;
-					b = 162;
-					time -= 1;
-					break;
-				case 47:
-					r = 0;
-					g = 255;
-					b = 230;
-					time -= 1;
-					break;
-				case 46:
-					r = 0;
-					g = 239;
-					b = 255;
-					time -= 1;
-					break;
-				case 45:
-					r = 0;
-					g = 196;
-					b = 255;
-					time -= 1;
-					break;
-				case 44:
-					r = 0;
-					g = 173;
-					b = 255;
-					time -= 1;
-					break;
-				case 43:
-					r = 0;
-					g = 162;
-					b = 255;
-					time -= 1;
-					break;
-				case 42:
-					r = 0;
-					g = 137;
-					b = 255;
-					time -= 1;
-					break;
-				case 41:
-					r = 0;
-					g = 100;
-					b = 255;
-					time -= 1;
-					break;
-				case 40:
-					r = 0;
-					g = 77;
-					b = 255;
-					time -= 1;
-					break;
-				case 39:
-					r = 0;
-					g = 34;
-					b = 255;
-					time -= 1;
-					break;
-				case 38:
-					r = 17;
-					g = 0;
-					b = 255;
-					time -= 1;
-					break;
-				case 37:
-					r = 37;
-					g = 0;
-					b = 255;
-					time -= 1;
-					break;
-				case 36:
-					r = 68;
-					g = 0;
-					b = 255;
-					time -= 1;
-					break;
-				case 35:
-					r = 89;
-					g = 0;
-					b = 255;
-					time -= 1;
-					break;
-				case 34:
-					r = 102;
-					g = 0;
-					b = 255;
-					time -= 1;
-					break;
-				case 33:
-					r = 124;
-					g = 0;
-					b = 255;
-					time -= 1;
-					break;
-				case 32:
-					r = 154;
-					g = 0;
-					b = 255;
-					time -= 1;
-					break;
-				case 31:
-					r = 222;
-					g = 0;
-					b = 255;
-					time -= 1;
-					break;
-				case 30:
-					r = 255;
-					g = 0;
-					b = 247;
-					time -= 1;
-					break;
-				case 29:
-					r = 255;
-					g = 0;
-					b = 179;
-					time -= 1;
-					break;
-				case 28:
-					r = 255;
-					g = 0;
-					b = 128;
-					time = 59;
-				}
+
+//red = 255, green ++,
+// green = 255,r --
+//  r = 0, b ++
+// b = 255, g --
+// g = 0, r ++
+// r = 255, b --
+
+                if (r == 255 && b == 0 && g != 255){
+                    g += 20;
+                    if (g > 255){
+                        g = 255;
+                    }
+                }
+                if (g == 255 && r > 0){
+                    r -= 20;
+                    if (r < 0){
+                        r = 0;
+                    }
+                }
+                if (r == 0 && b != 255){
+                    b += 20;
+                    if (b > 255){
+                        b = 255;
+                    }
+                }
+                if (b == 255 && g > 0){
+                    g -= 20;
+                    if (g < 0){
+                        g = 0;
+                    }
+                }
+                if (g == 0 && r != 255){
+                    r += 20;
+                    if (r > 255){
+                        r = 255;
+                    }
+                }
+                if (r == 255 && b > 0){
+                    b -= 20;
+                    if (b < 0){
+                        b = 0;
+                    }
+                }
+
+
+
+
 				Color c = Color.fromRGB(r, g, b);
 				Player[] arrayOfPlayer;
 				int j = (arrayOfPlayer = Bukkit.getServer().getOnlinePlayers()).length;
