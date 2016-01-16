@@ -1,0 +1,12 @@
+name: ArmorFadeV2
+main: com.gmail.greyvoidanimations.armorfadev2.armorfadev2
+version: 2.0
+author: superminer10
+website: http://greyvoidanimations.weebly.com/
+commands:
+  afself:
+    description: This enables fading leather armor on your player.
+    usage: /<command>
+  afother:
+    description: This enables fading leather armor on the player specified.
+    usage: /<command> <player>
