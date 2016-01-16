@@ -1,3 +1,8 @@
+/**
+ * @author taylorsamy
+ *
+ * */
+
 package com.relicpvp.devteam;
 
 import org.bukkit.Bukkit;
