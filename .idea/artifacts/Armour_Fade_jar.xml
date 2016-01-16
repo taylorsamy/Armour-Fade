@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Armour-Fade:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Armour_Fade_jar</output-path>
+    <root id="archive" name="Armour-Fade.jar">
+      <element id="module-output" name="Armour-Fade" />
+      <element id="file-copy" path="$PROJECT_DIR$/plugin.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/pom.xml" />
+      <element id="file-copy" path="$PROJECT_DIR$/LICENSE" />
+      <element id="file-copy" path="$PROJECT_DIR$/README.md" />
+    </root>
+  </artifact>
+</component>
