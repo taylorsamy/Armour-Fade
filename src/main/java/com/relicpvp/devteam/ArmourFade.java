@@ -1,7 +1,6 @@
 /**
  * @author taylorsamy
- *
- * */
+ */
 
 package com.relicpvp.devteam;
 
@@ -12,14 +11,14 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class ArmourFade extends JavaPlugin implements Listener {
+public final class ArmourFade extends JavaPlugin {
 
     private static final String PREFIX = ChatColor.DARK_GRAY + "[" + ChatColor.GRAY + "ArmourFade" + ChatColor.DARK_GRAY + "]" + ChatColor.DARK_GREEN + " ";
     int r = 255;
@@ -29,13 +28,17 @@ public final class ArmourFade extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         getLogger().info("ArmourFade Actually Works! :D");
-        Bukkit.getPluginManager().registerEvents(this, this);
+
+        PluginManager pm = getServer().getPluginManager();
+        pm.addPermission(Permissions.other);
+
         colourChange();
     }
 
     @Override
     public void onDisable() {
         getLogger().info("Looks like the server is shutting down... I guess that means I should too.");
+        getServer().getPluginManager().removePermission(Permissions.other);
     }
 
     public void colourChange() {
@@ -120,56 +123,67 @@ public final class ArmourFade extends JavaPlugin implements Listener {
         i.setItemMeta(meta);
         return i;
     }
-
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean onCommand(CommandSender sender, Command cmd, String label, final String[] args) {
         if (cmd.getName().equalsIgnoreCase("afother")) {
-            if (args.length == 1) {
-                Player target = (Bukkit.getServer().getPlayer(args[0]));
-                if (target == null) {
-                    sender.sendMessage(PREFIX + args[0] + " is not online... Did you think that would work?");
-                    return false;
-                } else {
-                    PlayerInventory otherinventory = target.getInventory();
-                    ItemStack helmet = new ItemStack(Material.LEATHER_HELMET, 1);
-                    ItemStack chest = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-                    ItemStack legs = new ItemStack(Material.LEATHER_LEGGINGS, 1);
-                    ItemStack boots = new ItemStack(Material.LEATHER_BOOTS, 1);
-                    ItemMeta helmetmeta = helmet.getItemMeta();
-                    helmetmeta.setDisplayName(ChatColor.DARK_BLUE + "Rainbow Helmet");
-                    helmet.setItemMeta(helmetmeta);
-                    ItemMeta chestmeta = chest.getItemMeta();
-                    chestmeta.setDisplayName(ChatColor.DARK_BLUE + "Rainbow Chestplate");
-                    chest.setItemMeta(chestmeta);
-                    ItemMeta legsmeta = legs.getItemMeta();
-                    legsmeta.setDisplayName(ChatColor.DARK_BLUE + "Rainbow Leggings");
-                    legs.setItemMeta(legsmeta);
-                    ItemMeta bootsmeta = boots.getItemMeta();
-                    bootsmeta.setDisplayName(ChatColor.DARK_BLUE + "Rainbow Boots");
-                    boots.setItemMeta(bootsmeta);
+            if (sender.hasPermission(Permissions.other)) {
+                if (args.length == 1) {
 
-                    boolean success = false;
-                    if (otherinventory.getHelmet() == null && otherinventory.getChestplate() == null && otherinventory.getLeggings() == null && otherinventory.getBoots() == null) {
-                        success = true;
+                    Player target = null;
+
+                    for (Player player : Bukkit.getOnlinePlayers()){
+                        if (player.getName().equalsIgnoreCase(args[0])){
+                            target = player;
+                            getLogger().info(player.getDisplayName());
+                            break;
+                        }
+                    }
+
+                    if (target == null) {
+                        sender.sendMessage(PREFIX + args[0] + " is not online... Did you think that would work?");
+                        return true;
                     } else {
-                        sender.sendMessage(PREFIX + target.getName() + " needs to remove their current armour first.");
-                        target.sendMessage(PREFIX + sender.getName() + " tried to give you Rainbow Armour, but first you need to remove your current armour!");
-                    }
+                        PlayerInventory otherinventory = target.getInventory();
+                        ItemStack helmet = new ItemStack(Material.LEATHER_HELMET, 1);
+                        ItemStack chest = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
+                        ItemStack legs = new ItemStack(Material.LEATHER_LEGGINGS, 1);
+                        ItemStack boots = new ItemStack(Material.LEATHER_BOOTS, 1);
+                        ItemMeta helmetmeta = helmet.getItemMeta();
+                        helmetmeta.setDisplayName(ChatColor.DARK_BLUE + "Rainbow Helmet");
+                        helmet.setItemMeta(helmetmeta);
+                        ItemMeta chestmeta = chest.getItemMeta();
+                        chestmeta.setDisplayName(ChatColor.DARK_BLUE + "Rainbow Chestplate");
+                        chest.setItemMeta(chestmeta);
+                        ItemMeta legsmeta = legs.getItemMeta();
+                        legsmeta.setDisplayName(ChatColor.DARK_BLUE + "Rainbow Leggings");
+                        legs.setItemMeta(legsmeta);
+                        ItemMeta bootsmeta = boots.getItemMeta();
+                        bootsmeta.setDisplayName(ChatColor.DARK_BLUE + "Rainbow Boots");
+                        boots.setItemMeta(bootsmeta);
 
-                    if (success) {
+                        boolean success = false;
+                        if (otherinventory.getHelmet() == null && otherinventory.getChestplate() == null && otherinventory.getLeggings() == null && otherinventory.getBoots() == null) {
+                            success = true;
+                        } else {
+                            sender.sendMessage(PREFIX + target.getName() + " needs to remove their current armour first.");
+                            target.sendMessage(PREFIX + sender.getName() + " tried to give you Rainbow Armour, but first you need to remove your current armour!");
+                        }
 
-                        otherinventory.setHelmet(helmet);
-                        otherinventory.setChestplate(chest);
-                        otherinventory.setLeggings(legs);
-                        otherinventory.setBoots(boots);
-                        sender.sendMessage(PREFIX + target.getName() + " has been given Rainbow Armour!");
-                        target.sendMessage(PREFIX + sender.getName() + " gave you Rainbow Armour!");
+                        if (success) {
+
+                            otherinventory.setHelmet(helmet);
+                            otherinventory.setChestplate(chest);
+                            otherinventory.setLeggings(legs);
+                            otherinventory.setBoots(boots);
+                            sender.sendMessage(PREFIX + target.getName() + " has been given Rainbow Armour!");
+                            target.sendMessage(PREFIX + sender.getName() + " gave you Rainbow Armour!");
+                        }
                     }
+                } else {
+                    sender.sendMessage(PREFIX + "Please specify a player");
                 }
-            } else {
-                sender.sendMessage(PREFIX + "Please specify a player");
+                return true;
             }
-            return true;
         } else if (cmd.getName().equalsIgnoreCase("afself")) {
             if (!(sender instanceof Player)) {
                 sender.sendMessage(PREFIX + "Did you actually try to give the console Rainbow Armour?");

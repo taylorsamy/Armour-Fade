@@ -13,10 +13,3 @@ commands:
   afinfo:
     description: Shows plugin info.
     usage: /<command>
-Premissions:
-  armourfade.*:
-    default: op
-  armourfade.other:
-    default: false
-  armourfade.use:
-    default: false
