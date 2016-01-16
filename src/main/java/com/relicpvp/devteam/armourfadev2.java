@@ -17,6 +17,7 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class armourfadev2 extends JavaPlugin implements Listener {
+	
 
 	int r = 0;
 	int g = 0;
