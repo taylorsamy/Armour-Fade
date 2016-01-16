@@ -1,14 +1,14 @@
-name: ArmorFade
+name: ArmourFade
 main: com.relicpvp.devteam.ArmourFade
 version: 2.0
 authors: [superminer10, Taylorsamy]
 website: http://greyvoidanimations.weebly.com/
 commands:
   afself:
-    description: This enables fading leather armor on your player.
+    description: This enables ArmourFade on yourself.
     usage: /<command>
   afother:
-    description: This enables fading leather armor on the player specified.
+    description: This enables ArmourFade on the player specified.
     usage: /<command> <player>
   afinfo:
     description: Shows plugin info.

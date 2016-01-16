@@ -25,7 +25,7 @@ public final class ArmourFade extends JavaPlugin implements Listener {
 
 	@Override
 	public void onEnable() {
-		getLogger().info("ArmourFadeV2 Actually Works! :D");
+		getLogger().info("ArmourFade Actually Works! :D");
 		Bukkit.getPluginManager().registerEvents(this, this);
 		makeClockAndChangingTimers();
 	}
