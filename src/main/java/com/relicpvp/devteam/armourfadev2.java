@@ -17,8 +17,6 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class armourfadev2 extends JavaPlugin implements Listener {
-	
-
 
 	int r = 0;
 	int g = 0;
@@ -27,20 +25,14 @@ public final class armourfadev2 extends JavaPlugin implements Listener {
 
 	@Override
 	public void onEnable() {
-		getLogger().info("ArmourFadeV2 Actually Works! :D"); // print startup
-															// message to
-															// console
+		getLogger().info("ArmourFadeV2 Actually Works! :D");
 		Bukkit.getPluginManager().registerEvents(this, this);
 		makeClockAndChangingTimers();
 	}
 
 	@Override
 	public void onDisable() {
-		getLogger().info("Looks like the server is shutting down... I guess that means I should too."); // print
-																										// shutdown
-																										// message
-																										// to
-																										// console
+		getLogger().info("Looks like the server is shutting down... I guess that means I should too.");
 	}
 
 	public void makeClockAndChangingTimers() {
@@ -242,36 +234,15 @@ public final class armourfadev2 extends JavaPlugin implements Listener {
 					time = 59;
 				}
 				Color c = Color.fromRGB(r, g, b);
-				// Logger log = Bukkit.getLogger();
-				// for (Player player : Bukkit.getOnlinePlayers()) {
-				// if (player.getInventory().getHelmet() == null){
-				// // log.info("error handling FTW");
-				// } else {
-				// LeatherArmorMeta helmet = (LeatherArmorMeta)
-				// player.getInventory().getHelmet().getItemMeta();
-				// helmet.setColor(Color.AQUA);
-				// //if (helmet.getDisplayName().equalsIgnoreCase("rainbow
-				// helmet")) {
-				// //helmet.setColor(Color.AQUA);
-				// //}
-				// log.info(helmet.getDisplayName());
-				// }
-				//
-				// }
-				//
-				// }
-				// }, 0l, 2l);
 				Player[] arrayOfPlayer;
 				int j = (arrayOfPlayer = Bukkit.getServer().getOnlinePlayers()).length;
 				for (int i = 0; i < j; i++) {
 					Player p = arrayOfPlayer[i];
-
 					try {
 						if (p.getInventory().getHelmet() != null && (p.getInventory().getHelmet().getItemMeta()
 								.getDisplayName().equalsIgnoreCase(ChatColor.DARK_BLUE + "rainbow helmet"))) {
 							p.getInventory().setHelmet(getColorArmor(Material.LEATHER_HELMET, c, "Rainbow Helmet"));
 						}
-
 						if ((p.getInventory().getChestplate() != null)
 								&& (p.getInventory().getChestplate().getItemMeta().getDisplayName()
 										.equalsIgnoreCase(ChatColor.DARK_BLUE + "rainbow chestplate"))) {
@@ -293,9 +264,7 @@ public final class armourfadev2 extends JavaPlugin implements Listener {
 				}
 			}
 		}, 0L, 2L);
-
 	}
-
 	public ItemStack getColorArmor(Material m, Color c, String displayName) {
 		ItemStack i = new ItemStack(m, 1);
 		LeatherArmorMeta meta = (LeatherArmorMeta) i.getItemMeta();
@@ -378,6 +347,9 @@ public final class armourfadev2 extends JavaPlugin implements Listener {
 						+ ChatColor.DARK_GREEN + " You gave yourself rainbow armor!");
 			}
 			return true;
+		} else if (cmd.getName().equalsIgnoreCase("afinfo")) {
+			sender.sendMessage(ChatColor.DARK_GRAY + "[" + ChatColor.GRAY + "ArmorFade" + ChatColor.DARK_GRAY + "]"
+					+ ChatColor.DARK_GREEN + " Plugin created superminer10 and Taylorsamy for the Relic PVP Server");
 		}
 		return false;
 	}
