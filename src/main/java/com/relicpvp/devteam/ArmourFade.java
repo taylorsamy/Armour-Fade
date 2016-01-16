@@ -1,7 +1,3 @@
-/**
- * @author Taylorsamy
- *
- * **/
 package com.relicpvp.devteam;
 
 import org.bukkit.Bukkit;
@@ -43,6 +39,7 @@ public final class ArmourFade extends JavaPlugin implements Listener {
             @Override
             public void run() {
 
+
                 if (r == 255 && b == 0 && g != 255) {
                     g += 10;
                     if (g > 255) {
@@ -79,6 +76,7 @@ public final class ArmourFade extends JavaPlugin implements Listener {
                         b = 0;
                     }
                 }
+
 
                 Color c = Color.fromRGB(r, g, b);
                 checkInventory(c);
@@ -121,7 +119,6 @@ public final class ArmourFade extends JavaPlugin implements Listener {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (cmd.getName().equalsIgnoreCase("afother")) {
-
             if (args.length == 1) {
                 Player target = (Bukkit.getServer().getPlayer(args[0]));
                 if (target == null) {
