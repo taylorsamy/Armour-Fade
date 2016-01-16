@@ -1,6 +1,6 @@
 /**
  * @author Taylorsamy
- * 
+ *
  * **/
 package com.relicpvp.devteam;
 
