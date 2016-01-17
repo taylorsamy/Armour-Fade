@@ -26,7 +26,6 @@ public class ColourArmour {
     static int b = 0;
 
     public void createColour() {
-
         if (r == 255 && b == 0 && g != 255) {
             g += 10;
             if (g > 255) {
@@ -67,22 +66,25 @@ public class ColourArmour {
     }
 
     public void checkInventory(Color c, Player player) {
-
-        try {
-            if (player.getInventory().getHelmet() != null && (player.getInventory().getHelmet().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.DARK_BLUE + "rainbow helmet"))) {
+        if (player.getInventory().getHelmet() != null && player.getInventory().getHelmet().getItemMeta().hasDisplayName()) {
+            if (player.getInventory().getHelmet().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.DARK_BLUE + "rainbow helmet")) {
                 player.getInventory().setHelmet(setArmourMeta(Material.LEATHER_HELMET, c, (LeatherArmorMeta) player.getInventory().getHelmet().getItemMeta()));
             }
+        }
+        if (player.getInventory().getChestplate() != null && player.getInventory().getChestplate().getItemMeta().hasDisplayName()) {
             if ((player.getInventory().getChestplate() != null) && (player.getInventory().getChestplate().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.DARK_BLUE + "rainbow chestplate"))) {
                 player.getInventory().setChestplate(setArmourMeta(Material.LEATHER_CHESTPLATE, c, (LeatherArmorMeta) player.getInventory().getChestplate().getItemMeta()));
             }
+        }
+        if (player.getInventory().getLeggings() != null && player.getInventory().getLeggings().getItemMeta().hasDisplayName()) {
             if ((player.getInventory().getLeggings() != null) && (player.getInventory().getLeggings().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.DARK_BLUE + "rainbow leggings"))) {
                 player.getInventory().setLeggings(setArmourMeta(Material.LEATHER_LEGGINGS, c, (LeatherArmorMeta) player.getInventory().getLeggings().getItemMeta()));
             }
+        }
+        if (player.getInventory().getBoots() != null && player.getInventory().getBoots().getItemMeta().hasDisplayName()) {
             if ((player.getInventory().getBoots() != null) && (player.getInventory().getBoots().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.DARK_BLUE + "rainbow boots"))) {
                 player.getInventory().setBoots(setArmourMeta(Material.LEATHER_BOOTS, c, (LeatherArmorMeta) player.getInventory().getBoots().getItemMeta()));
             }
-        } catch (NullPointerException e) {
-            return;
         }
     }
 

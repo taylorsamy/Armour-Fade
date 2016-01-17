@@ -24,7 +24,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class Commands {
     private CommandSender sender;
     private Command cmd;
-    private String label;
     private String[] args;
     private static final String PREFIX = ChatColor.DARK_GRAY + "[" + ChatColor.GRAY + "ArmourFade" + ChatColor.DARK_GRAY + "]" + ChatColor.DARK_GREEN + " ";
 
@@ -33,10 +32,9 @@ public class Commands {
     ItemStack legs;
     ItemStack boots;
 
-    public Commands(CommandSender sender, Command cmd, String label, String[] args) {
+    public Commands(CommandSender sender, Command cmd, String[] args) {
         this.sender = sender;
         this.cmd = cmd;
-        this.label = label;
         this.args = args;
     }
 

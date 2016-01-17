@@ -46,7 +46,7 @@ public final class ArmourFade extends JavaPlugin {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        Commands commands = new Commands(sender, cmd, label, args);
+        Commands commands = new Commands(sender, cmd, args);
         commands.checkForCommand();
         return true;
     }

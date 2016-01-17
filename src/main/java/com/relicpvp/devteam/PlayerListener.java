@@ -22,10 +22,10 @@ public class PlayerListener implements Listener {
 
     public PlayerListener(ArmourFade plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
-        this.plugin = plugin;
+        PlayerListener.plugin = plugin;
     }
 
-
+    @SuppressWarnings("unused")
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
         final Player player = e.getPlayer();
@@ -36,7 +36,6 @@ public class PlayerListener implements Listener {
     }
 
     private void startColourClock(final Player player) {
-
         final ColourArmour colourArmour = new ColourArmour();
         Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
 
