@@ -1,7 +1,7 @@
 name: ArmourFade
 main: com.relicpvp.devteam.ArmourFade
 version: 2.0
-authors: [superminer10, Taylorsamy]
+authors: [Taylorsamy, superminer10]
 website: http://greyvoidanimations.weebly.com/
 commands:
   afself:

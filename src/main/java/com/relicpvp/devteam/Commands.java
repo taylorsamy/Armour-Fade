@@ -1,3 +1,8 @@
+/**
+ * This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.
+ * To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/4.0/.
+ */
+
 package com.relicpvp.devteam;
 
 import org.bukkit.Bukkit;
@@ -12,7 +17,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 /**
  * Created by Taylor on 16/01/2016.
+ *
+ * @author Taylorsamy
  */
+
 public class Commands {
     private CommandSender sender;
     private Command cmd;
@@ -20,12 +28,10 @@ public class Commands {
     private String[] args;
     private static final String PREFIX = ChatColor.DARK_GRAY + "[" + ChatColor.GRAY + "ArmourFade" + ChatColor.DARK_GRAY + "]" + ChatColor.DARK_GREEN + " ";
 
-
     ItemStack helmet;
     ItemStack chest;
     ItemStack legs;
     ItemStack boots;
-
 
     public Commands(CommandSender sender, Command cmd, String label, String[] args) {
         this.sender = sender;
@@ -42,11 +48,14 @@ public class Commands {
             }
             afOther();
         } else if (cmd.getName().equalsIgnoreCase("afself")) {
+            if (!(sender.hasPermission(Permissions.self))) {
+                sender.sendMessage(PREFIX + ChatColor.RED + "You do not have permission to use this command.");
+                return;
+            }
             afSelf();
         } else if (cmd.getName().equalsIgnoreCase("afinfo")) {
             afInfo();
         }
-
     }
 
     private void afOther() {
@@ -54,6 +63,7 @@ public class Commands {
             sender.sendMessage(PREFIX + "Please specify a player");
             return;
         }
+
         Player target = null;
 
         for (Player player : Bukkit.getOnlinePlayers()) {
@@ -65,7 +75,6 @@ public class Commands {
 
         if (target == null) {
             sender.sendMessage(PREFIX + args[0] + " is not online... Did you think that would work?");
-
         } else {
             PlayerInventory inv = target.getInventory();
             createRainbowArmour();
@@ -79,14 +88,13 @@ public class Commands {
             }
 
             if (success) {
-
                 inv.setHelmet(helmet);
                 inv.setChestplate(chest);
                 inv.setLeggings(legs);
                 inv.setBoots(boots);
                 sender.sendMessage(PREFIX + target.getName() + " has been given Rainbow Armour!");
                 target.sendMessage(PREFIX + sender.getName() + " gave you Rainbow Armour!");
-
+                PlayerListener.useNoPermission(target);
             }
         }
     }
@@ -117,7 +125,9 @@ public class Commands {
     }
 
     private void afInfo() {
-        sender.sendMessage(PREFIX + "Plugin created by superminer10 and Taylorsamy for the Relic PVP Server");
+        sender.sendMessage(PREFIX + "Plugin created by Taylorsamy and Superminer10 for the Relic PVP Server.");
+        sender.sendMessage(PREFIX + "For more information, visit the wiki at https://github.com/taylorsamy/Armour-Fade/wiki.");
+        sender.sendMessage(PREFIX + "This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/4.0/.");
     }
 
     private void createRainbowArmour() {
