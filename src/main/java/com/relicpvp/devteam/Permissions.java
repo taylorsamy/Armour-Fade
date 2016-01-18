@@ -16,4 +16,5 @@ import org.bukkit.permissions.Permission;
 public class Permissions {
     public static Permission self = new Permission("armourfade.self");
     public static Permission other = new Permission("armourfade.other");
+    public static Permission remmove = new Permission("armourfade.remove");
 }

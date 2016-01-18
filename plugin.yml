@@ -13,3 +13,6 @@ commands:
   afinfo:
     description: Shows plugin info.
     usage: /<command>
+  afremove:
+    description: Removed armour from a player or yourself
+    usage: /<command> [player]
