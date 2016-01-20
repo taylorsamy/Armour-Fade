@@ -30,7 +30,7 @@ public class PlayerListener implements Listener {
     public void onJoin(PlayerJoinEvent e) {
         final Player player = e.getPlayer();
 
-        if (player.hasPermission(Permissions.self)) {
+        if (player.hasPermission(Permissions.use)) {
             startColourClock(player);
         }
     }

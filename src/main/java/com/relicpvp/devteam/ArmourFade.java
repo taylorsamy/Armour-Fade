@@ -23,15 +23,14 @@ public final class ArmourFade extends JavaPlugin {
     @Override
     public void onEnable() {
         PluginManager pm = getServer().getPluginManager();
-        pm.addPermission(Permissions.other);
-        pm.addPermission(Permissions.self);
+        Permissions.init(pm);
         new PlayerListener(this);
         saveReload();
     }
 
     private void saveReload() {
         for (Player player : Bukkit.getServer().getOnlinePlayers()) {
-            if (player.hasPermission(Permissions.self)) {
+            if (player.hasPermission(Permissions.use)) {
                 PlayerListener.useNoPermission(player);
             }
         }
@@ -40,8 +39,7 @@ public final class ArmourFade extends JavaPlugin {
     @Override
     public void onDisable() {
         getLogger().info("Looks like the server is shutting down... I guess that means I should too.");
-        getServer().getPluginManager().removePermission(Permissions.other);
-        getServer().getPluginManager().removePermission(Permissions.self);
+        Permissions.disable(getServer().getPluginManager());
     }
 
     @Override
