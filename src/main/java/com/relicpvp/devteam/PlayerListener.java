@@ -25,6 +25,7 @@ public class PlayerListener implements Listener {
         PlayerListener.plugin = plugin;
     }
 
+
     @SuppressWarnings("unused")
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
@@ -37,6 +38,7 @@ public class PlayerListener implements Listener {
 
     private void startColourClock(final Player player) {
         final ColourArmour colourArmour = new ColourArmour();
+
         Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
 
             @Override

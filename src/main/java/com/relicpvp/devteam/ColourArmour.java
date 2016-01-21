@@ -21,9 +21,10 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 public class ColourArmour {
 
     public Color c;
-    static int r = 255;
-    static int g = 0;
-    static int b = 0;
+    private int r = 255;
+    private int g = 0;
+    private int b = 0;
+
 
     public void createColour() {
         if (r == 255 && b == 0 && g != 255) {

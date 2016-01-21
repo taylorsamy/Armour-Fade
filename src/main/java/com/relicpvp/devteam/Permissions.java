@@ -20,18 +20,29 @@ public class Permissions {
     public static Permission give = new Permission("armourfade.give");
     public static Permission removeSelf = new Permission("armourfade.remove.self");
     public static Permission removeOther = new Permission("armourfade.remove.other");
+    public static Permission all = new Permission("armourfade.*");
 
     public static void init(PluginManager pm) {
+        all.setDefault(PermissionDefault.OP);
         use.setDefault(PermissionDefault.FALSE);
         give.setDefault(PermissionDefault.FALSE);
         removeSelf.setDefault(PermissionDefault.FALSE);
         removeOther.setDefault(PermissionDefault.FALSE);
+
+        use.addParent(all, true);
+        give.addParent(all, true);
+        removeOther.addParent(all, true);
+        removeSelf.addParent(all, true);
+
+        pm.addPermission(all);
         pm.addPermission(use);
         pm.addPermission(give);
         pm.addPermission(removeSelf);
         pm.addPermission(removeOther);
     }
+
     public static void disable(PluginManager pm) {
+        pm.removePermission(all);
         pm.removePermission(use);
         pm.removePermission(give);
         pm.removePermission(removeSelf);

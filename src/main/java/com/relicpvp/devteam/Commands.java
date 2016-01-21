@@ -27,10 +27,10 @@ public class Commands {
     private String[] args;
     private static final String PREFIX = ChatColor.DARK_GRAY + "[" + ChatColor.GRAY + "ArmourFade" + ChatColor.DARK_GRAY + "]" + ChatColor.DARK_GREEN + " ";
 
-    ItemStack helmet;
-    ItemStack chest;
-    ItemStack legs;
-    ItemStack boots;
+    private ItemStack helmet;
+    private ItemStack chest;
+    private ItemStack legs;
+    private ItemStack boots;
 
     public Commands(CommandSender sender, Command cmd, String[] args) {
         this.sender = sender;
